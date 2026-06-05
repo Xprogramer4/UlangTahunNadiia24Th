@@ -204,8 +204,14 @@
 </head>
 <body>
 
-    <!-- Musik Latar Romantis (Audio Piano Happy Birthday) -->
+    <!-- Musik Latar Romantis (Audio Piano Happy Birthday) 
+         Menggunakan multi-source CDN stabil agar bisa distreaming lancar oleh Android maupun iOS Safari (menggunakan jsDelivr dengan Range Request) -->
     <audio id="bg-music" loop>
+        <!-- Prioritas 1: Jika Rama mengupload file musik.mp3 sendiri di GitHub repositori -->
+        <source src="musik.mp3" type="audio/mpeg">
+        <!-- Prioritas 2: CDN Stabil dari jsDelivr (Mendukung iOS Range-Requests) -->
+        <source src="https://cdn.jsdelivr.net/gh/brayanreynoso/Happy-Birthday@main/happy-birthday.mp3" type="audio/mpeg">
+        <!-- Prioritas 3: Raw Git fallback -->
         <source src="https://raw.githubusercontent.com/brayanreynoso/Happy-Birthday/main/happy-birthday.mp3" type="audio/mpeg">
     </audio>
 
@@ -342,7 +348,9 @@
             }, 500);
 
             const music = document.getElementById('bg-music');
-            music.play().catch(err => console.log("Izin audio browser diperlukan."));
+            music.play().catch(err => {
+                console.log("Izin audio browser diperlukan:", err);
+            });
         }
     </script>
 </body>
