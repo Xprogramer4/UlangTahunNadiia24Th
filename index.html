@@ -1,1 +1,254 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 24th Birthday Nadia Wulandari! 💖</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&display=swap');
+
+        :root {
+            --primary-pink: #ff7597;
+            --soft-pink: #ffe3e9;
+            --deep-pink: #e63956;
+            --text-color: #4a4a4a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--soft-pink);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Container Utama */
+        .card-container {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 117, 151, 0.3);
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            transition: transform 0.5s ease;
+        }
+
+        /* Animasi Hati Berjatuhan */
+        .heart-falling {
+            position: fixed;
+            top: -10vh;
+            font-size: 20px;
+            color: var(--primary-pink);
+            opacity: 0.7;
+            animation: fall linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        /* Konten Estetik */
+        .romantic-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 3.5rem;
+            color: var(--deep-pink);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background-color: var(--primary-pink);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid var(--soft-pink);
+            margin: 0 auto 20px;
+            overflow: hidden;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .letter-box {
+            text-align: left;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+            background: #fff9fa;
+            padding: 15px;
+            border-left: 4px solid var(--primary-pink);
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        /* Tombol Interaktif */
+        .btn-pink {
+            background-color: var(--deep-pink);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(230, 57, 86, 0.4);
+        }
+
+        .btn-pink:hover {
+            background-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        /* Pop-up Pesan Tambahan */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 100;
+            width: 85%;
+            max-width: 380px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .popup.active {
+            display: block;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 90;
+        }
+
+        .overlay.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <!-- Musik Latar Belakang (Ganti URL dengan link mp3 pilihanmu jika perlu) -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="card-container">
+        <h1 class="romantic-title">Happy Birthday</h1>
+        <div class="age-badge">Nadia Wulandari ✨ 24th</div>
+        
+        <!-- Foto Nadia (Bisa diganti dengan link foto aslinya nanti) -->
+        <div class="photo-placeholder">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400" alt="Nadia Wulandari">
+        </div>
+
+        <div class="letter-box">
+            <p>Halo Sayang, Selamat ulang tahun yang ke-24! 💖</p>
+            <br>
+            <p>Di usiamu yang semakin dewasa ini, aku berharap semua impian dan cita-citamu selangkah lebih dekat untuk terwujud. Terima kasih sudah menjadi sosok yang luar biasa, sabar, dan selalu membawa kebahagiaan.</p>
+            <br>
+            <p>Semoga tahun ini penuh dengan berkah, kesehatan, dan senyuman yang gak pernah pudar. I'm so proud of you, selalu.</p>
+        </div>
+
+        <button class="btn-pink" onclick="showSurprise()">Klik di Sini, Nanad! 🎁</button>
+    </div>
+
+    <!-- Pop Up Kejutan -->
+    <div class="overlay" id="overlay" onclick="closePopup()"></div>
+    <div class="popup" id="popup">
+        <h3 style="color: var(--deep-pink); margin-bottom: 15px;">A Little Wish from Me... 🌹</h3>
+        <p style="font-size: 0.95rem; margin-bottom: 20px; line-height: 1.5;">
+            "Selamat melangkah di umur 24 tahun. Semoga kita bisa terus bertumbuh bersama, saling mendukung, dan mencapai semua rencana-rencana baik kita ke depan. Happy birthday, Sayang! — Rama"
+        </p>
+        <button class="btn-pink" style="padding: 8px 20px; font-size: 0.9rem;" onclick="closePopup()">Love You ❤️</button>
+    </div>
+
+    <script>
+        // Membuat Efek Hati Berjatuhan secara Otomatis
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-falling');
+            // Variasi bentuk emoji hati
+            const heartTypes = ['❤️', '💖', '💗', '💕', '🌸'];
+            heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.fontSize = Math.random() * 15 + 15 + "px";
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Fungsi Tombol Kejutan & Putar Musik
+        function showSurprise() {
+            document.getElementById('popup').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+            
+            // Putar musik saat tombol diklik (karena kebijakan browser modern melarang autoplay musik sebelum interaksi)
+            const music = document.getElementById('bg-music');
+            music.play().catch(error => console.log("Musik butuh izin interaksi browser."));
+        }
+
+        function closePopup() {
+            document.getElementById('popup').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
