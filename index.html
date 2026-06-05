@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -29,12 +28,325 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        /* Container Utama */
-        .card-container {
+        /* Efek Hati Berjatuhan */
+        .heart-falling {
+            position: fixed;
+            top: -10vh;
+            font-size: 20px;
+            color: var(--primary-pink);
+            opacity: 0.6;
+            animation: fall linear infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        /* Screen Gerbang Utama / Cover */
+        #welcome-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--soft-pink);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Container Slide */
+        .slider-container {
             background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 117, 151, 0.25);
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+            display: none;
+        }
+
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Judul Gaya Romantis */
+        .romantic-title {
+            font-family: 'Sacramento', cursive;
+            font-size: 3.2rem;
+            color: var(--deep-pink);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .age-badge {
+            display: inline-block;
+            background-color: var(--primary-pink);
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        /* Pembungkus Foto Slide */
+        .photo-frame {
+            width: 100%;
+            height: 280px;
+            border-radius: 15px;
+            border: 4px solid var(--soft-pink);
+            margin: 0 auto 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Teks Ucapan */
+        .letter-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: #555;
+            min-height: 80px;
+        }
+
+        /* Tombol-Tombol Navigasi */
+        .btn-pink {
+            background-color: var(--deep-pink);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(230, 57, 86, 0.3);
+        }
+
+        .btn-pink:hover {
+            background-color: var(--primary-pink);
+            transform: translateY(-2px);
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .btn-nav {
+            background: var(--soft-pink);
+            color: var(--deep-pink);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+
+        .btn-nav:hover {
+            background: #ffd0da;
+        }
+
+        /* Indikator Titik Slide */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background-color: #ddd;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--deep-pink);
+            width: 18px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Musik Latar Romantis (Audio Selamat Ulang Tahun Piano) -->
+    <audio id="bg-music" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-happy-birthday-jazz-piano-1655.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Gerbang Masuk Awal (Supaya musik diizinkan berputar oleh browser) -->
+    <div id="welcome-screen">
+        <h1 class="romantic-title" style="font-size: 4rem;">Hai Sayang...</h1>
+        <p style="margin-bottom: 20px; color: var(--deep-pink); font-weight: 600;">Ada pesan spesial buat Nanad ✨</p>
+        <button class="btn-pink" onclick="startSurprise()">Buka Kejutan 🎁</button>
+    </div>
+
+    <!-- Container Utama Slide Presentasi -->
+    <div class="slider-container" id="slider-box">
+        
+        <!-- SLIDE 1 -->
+        <div class="slide active">
+            <h1 class="romantic-title">Happy Birthday</h1>
+            <div class="age-badge">Nadia Wulandari 🌸 24th</div>
+            <div class="photo-frame">
+                <img src="IMG-20260308-WA0022.jpg" alt="Foto Nadia 1">
+            </div>
+            <p class="letter-text">
+                Selamat ulang tahun yang ke-24, Sayang! 💖 Di hari yang spesial ini, aku cuma mau bilang terima kasih sudah lahir ke dunia dan mengisi hari-hariku dengan senyuman manismu ini.
+            </p>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="slide">
+            <h1 class="romantic-title">Beautiful Nanad</h1>
+            <div class="age-badge">Melangkah di Usia Baru ✨</div>
+            <div class="photo-frame">
+                <img src="IMG-20260310-WA0024.jpg" alt="Foto Nadia 2">
+            </div>
+            <p class="letter-text">
+                Waktu cepat banget berlalu ya, sekarang kamu sudah berkepala dua dan masuk umur 24. Semoga di usia ini kamu makin dewasa, makin cantik, dan dilancarkan segala urusan serta cita-citamu.
+            </p>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="slide">
+            <h1 class="romantic-title">Stay Happy!</h1>
+            <div class="age-badge">Semesta Penuh Berkah 🌟</div>
+            <div class="photo-frame">
+                <img src="IMG-20260504-WA0045.jpg" alt="Foto Nadia 3">
+            </div>
+            <p class="letter-text">
+                Jangan pernah bosan jadi orang baik ya. Aku selalu berdoa supaya ketulusan dan keceriaan kamu ini tetap terjaga, dan semoga kebahagiaan selalu memeluk kamu ke mana pun kamu melangkah.
+            </p>
+        </div>
+
+        <!-- SLIDE 4 -->
+        <div class="slide">
+            <h1 class="romantic-title">Grow Together</h1>
+            <div class="age-badge">Rama & Nadia ❤️</div>
+            <div class="photo-frame">
+                <img src="IMG-20260224-WA0003.jpg" alt="Foto Berdua">
+            </div>
+            <p class="letter-text">
+                Semoga kita bisa terus bertumbuh bersama, saling mendukung di setiap keadaan, dan mencapai seluruh rencana-rencana masa depan kita ya. Happy birthday, Sayang. I love you so much! 🥰
+            </p>
+        </div>
+
+        <!-- Kontrol Navigasi Bawah -->
+        <div class="nav-buttons">
+            <button class="btn-nav" id="prev-btn" onclick="changeSlide(-1)">◀ Prev</button>
+            <div class="dots-container" id="dots-box"></div>
+            <button class="btn-nav" id="next-btn" onclick="changeSlide(1)">Next ▶</button>
+        </div>
+    </div>
+
+    <script>
+        // Membuat Hati Berguguran secara Kontinu
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-falling');
+            const heartTypes = ['❤️', '💖', '💗', '💕', '🌸'];
+            heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+            
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.fontSize = Math.random() * 15 + 15 + "px";
+            
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+        setInterval(createHeart, 350);
+
+        // Logic Slide Sistem
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        // Membuat Titik Indikator Sesuai Jumlah Slide
+        const dotsBox = document.getElementById('dots-box');
+        slides.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if(index === 0) dot.classList.add('active');
+            dotsBox.appendChild(dot);
+        });
+        const dots = document.querySelectorAll('.dot');
+
+        function updateSlideVisibility() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                dots[index].classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                    dots[index].classList.add('active');
+                }
+            });
+
+            // Sembunyikan tombol prev di slide pertama, ubah teks next di slide terakhir
+            document.getElementById('prev-btn').style.visibility = currentSlide === 0 ? 'hidden' : 'visible';
+            document.getElementById('next-btn').innerText = currentSlide === slides.length - 1 ? 'Ulangi 🔄' : 'Next ▶';
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide >= slides.length) {
+                currentSlide = 0; // kembali ke awal jika sudah di slide terakhir
+            } else if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+            updateSlideVisibility();
+        }
+
+        // Jalankan Fungsi Awal Navigasi
+        updateSlideVisibility();
+
+        // Fungsi Memulai Kejutan & Memutar Lagu
+        function startSurprise() {
+            document.getElementById('welcome-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('slider-box').style.display = 'block';
+            }, 500);
+
+            const music = document.getElementById('bg-music');
+            music.play().catch(err => console.log("Izin audio browser diperlukan."));
+        }
+    </script>
+</body>
+</html>            background: white;
             padding: 30px;
             border-radius: 20px;
             box-shadow: 0 10px 30px rgba(255, 117, 151, 0.3);
